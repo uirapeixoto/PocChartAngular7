@@ -1,4 +1,1 @@
-Scaffold-DbContext "Server=wizposvenda001-hml-sqlserver.database.windows.net;Initial Catalog=SQG;Persist Security Info=False;User ID=usrAppSQG;Password=kcQBwev5TAjMn7wP;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entities/Atendimento -Context "AtendimentoContext" -schema Atendimento -DataAnnotations -force
-Scaffold-DbContext "Server=wizposvenda001-hml-sqlserver.database.windows.net;Initial Catalog=SQG;Persist Security Info=False;User ID=usrAppSQG;Password=kcQBwev5TAjMn7wP;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entities/SCC -Context "SccContext" -schema SCC -DataAnnotations -force
-
-Scaffold-DbContext "Server=wizposvenda001-hml-sqlserver.database.windows.net;Initial Catalog=SQG;Persist Security Info=False;User ID=usrAppSQG;Password=kcQBwev5TAjMn7wP;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entities/Tutal -DataAnnotations -force
+removed

@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PocAspNetCoreChart", "PocAspNetCoreChart\PocAspNetCoreChart.csproj", "{804F083E-65CC-4790-88B6-CCF1981B07FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{FA463583-5F12-4672-ACDF-2C272693FE6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{1E1B28F4-AD1D-4EA0-BE3B-1873E43D9382}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{804F083E-65CC-4790-88B6-CCF1981B07FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{804F083E-65CC-4790-88B6-CCF1981B07FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{804F083E-65CC-4790-88B6-CCF1981B07FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{804F083E-65CC-4790-88B6-CCF1981B07FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA463583-5F12-4672-ACDF-2C272693FE6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA463583-5F12-4672-ACDF-2C272693FE6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA463583-5F12-4672-ACDF-2C272693FE6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA463583-5F12-4672-ACDF-2C272693FE6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E1B28F4-AD1D-4EA0-BE3B-1873E43D9382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E1B28F4-AD1D-4EA0-BE3B-1873E43D9382}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E1B28F4-AD1D-4EA0-BE3B-1873E43D9382}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E1B28F4-AD1D-4EA0-BE3B-1873E43D9382}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

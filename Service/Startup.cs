@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Repository.Config;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Collections.Generic;
 using System.IO;
@@ -65,6 +66,9 @@ namespace Service
                 options.Filters.Add(new Microsoft.AspNetCore.Mvc.Cors.Internal.CorsAuthorizationFilterFactory("AllowAll"));
             });
             #endregion
+            
+            //SignalR
+            services.AddSignalR();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -109,7 +113,8 @@ namespace Service
                     template: "{controller}/{action=Index}/{id?}");
             });
 
-
+            //Cors
+            app.UseCors("AllowAll");
 
             app.UseSpa(spa =>
             {
@@ -122,6 +127,12 @@ namespace Service
                 {
                     spa.UseAngularCliServer(npmScript: "start");
                 }
+            });
+
+            //SignalR
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<ChartHub>("/chart");
             });
         }
     }

@@ -8,23 +8,41 @@ import { ChartService } from '../../services/chart.service';
   styleUrls: ['./barchart.component.css']
 })
 export class BarchartComponent implements OnInit {
-  dataChart: ChartModel[];
+  title: string;
+  chartLabels:string[] = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'];
+  chartOptions = {
+    responsive: true
+  };
 
-  constructor(private service: ChartService) { 
-    this.service.getChartData().subscribe( 
-      res => {
-      this.dataChart = res;
-    },err =>{
-      console.log("Deu Erro");
+  chartData = [
+    { data: [], label: '' },
+  ];
+
+  constructor(private service: ChartService) { }
+
+  ngOnInit() {
+    this.getDataChart();
+    this.title = "BarChart Works!";
+  }
+
+  getDataChart(){
+    this.service.getChartData().subscribe( res => {
+      res.forEach(x => {
+        this.chartData.push(x);
+      });
+      console.log(this.chartData);
     });
   }
 
-  ngOnInit() {
+  onChartClick(event) {
+    this.chartData = new Array();
     this.service.getChartData().subscribe( res => {
-      this.dataChart = res;
-    },err => {
-      console.log("Deu Erro");
+      res.forEach(x => {
+        this.chartData.push(x);
+      });
+      console.log(this.chartData);
     });
+    console.log(event);
   }
 
 }

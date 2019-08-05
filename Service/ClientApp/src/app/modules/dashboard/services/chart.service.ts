@@ -1,31 +1,42 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse  } from '@angular/common/http';
 import { ChartModel } from '../interfaces/chartmodel';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError, tap, retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChartService {
-  dataChart: ChartModel[];
   apiUrl: string = 'http://localhost:60967/api/data-chart';
+
   constructor(private httpClient: HttpClient) { }
 
-  public getChartData(): any{
-    
-    const  params = new  HttpParams().set('ndata', "6").set('amount', "2");
-    const dataObservable = new Observable(observer => {
-      this.httpClient.get<ChartModel[]>(this.apiUrl, {params})
-      .subscribe(
-        res => {
-            this.dataChart = res;
-            console.log(this.dataChart);
-        }, err => {
-            console.log(err);
-            observer.next(this.dataChart);
-        });
-    });
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    }),
+    params: new  HttpParams().set('ndata', "6").set('amount', "2")
+  };
 
-    return dataObservable;
-  }
+  getChartData():Observable<ChartModel[]>{
+    return this.httpClient.get<ChartModel[]>(this.apiUrl, this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )};
+
+   // Error handling 
+   handleError(error) {
+    let errorMessage = '';
+    if(error.error instanceof ErrorEvent) {
+      // Get client-side error
+      errorMessage = error.error.message;
+    } else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    window.alert(errorMessage);
+    return throwError(errorMessage);
+ }
 }

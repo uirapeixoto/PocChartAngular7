@@ -1,0 +1,13 @@
+<div class="flex">
+  <div class="flex-item">
+    <div style="display: block;">
+      <canvas id='canvas'
+      baseChart
+      [chartType]="'line'"
+      [options]="chartOptions"
+      [legend]="true"
+      (chartclick)="onChartClick($event)">{{ chart }}</canvas>
+    </div>
+  </div>
+  <button mat-button mat-raised-button color="primary" (click)="onChartClick($event)">refresh</button>
+</div>

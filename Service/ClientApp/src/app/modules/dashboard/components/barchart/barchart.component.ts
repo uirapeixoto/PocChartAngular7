@@ -9,13 +9,16 @@ import { ChartService } from '../../services/chart.service';
 })
 export class BarchartComponent implements OnInit {
   title: string;
+
   chartLabels:string[] = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'];
   chartOptions = {
     responsive: true
   };
 
   chartData = [
-    { data: [], label: '' },
+    { data: [330, 600, 260, 700, 200], label: 'Account A' },
+    { data: [120, 455, 100, 340, 400], label: 'Account B' },
+    { data: [45, 67, 800, 500,100], label: 'Account C' },
   ];
 
   constructor(private service: ChartService) { }

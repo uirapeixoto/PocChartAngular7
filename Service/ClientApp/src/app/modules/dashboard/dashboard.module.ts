@@ -10,6 +10,7 @@ import { SignalRService } from './services/signal-r.service';
 import { ChartComponent } from './components/chart/chart.component';
 import { ChartService } from './services/chart.service';
 import { FormsModule } from '@angular/forms';
+import { LineChartComponent } from './components/line-chart/line-chart.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     BarchartComponent,
     BoardComponent,
-    ChartComponent
+    ChartComponent,
+    LineChartComponent
   ],
   exports:[
     ChartsModule

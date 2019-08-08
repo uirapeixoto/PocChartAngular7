@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartModel } from '../../interfaces/chartmodel';
 import { ChartService } from '../../services/chart.service';
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-barchart',
@@ -9,43 +10,42 @@ import { ChartService } from '../../services/chart.service';
 })
 export class BarchartComponent implements OnInit {
   title: string;
-
+  chart: Chart;
+  chartData: ChartModel[] = [{data: [], label: "Init"},{data: [], label: "Init"}];
   chartLabels:string[] = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'];
   chartOptions = {
     responsive: true
   };
 
-  chartData = [
-    { data: [330, 600, 260, 700, 200], label: 'Account A' },
-    { data: [120, 455, 100, 340, 400], label: 'Account B' },
-    { data: [45, 67, 800, 500,100], label: 'Account C' },
-  ];
-
   constructor(private service: ChartService) { }
 
   ngOnInit() {
-    this.getDataChart();
+    this.service.getBarChartData().toPromise().then(res => {
+        this.chartData = res;
+        //console.log(this.chartData);
+    });
+    //this.getDataChart();
     this.title = "BarChart Works!";
   }
 
   getDataChart(){
-    this.service.getChartData().subscribe( res => {
-      res.forEach(x => {
-        this.chartData.push(x);
-      });
-      console.log(this.chartData);
+    this.service.getBarChartData().subscribe( res => {
+        this.chartData = res;
+        //console.log(this.chartData);
     });
   }
 
   onChartClick(event) {
-    this.chartData = new Array();
-    this.service.getChartData().subscribe( res => {
-      res.forEach(x => {
-        this.chartData.push(x);
+    this.service.getBarChartData().subscribe( res => {
+      this.chart = new Chart('canvas', {
+        type: 'bar',
+        data: {
+          labels: this.chartLabels,
+          datasets:res
+        },
+        options: this.chartOptions
       });
-      console.log(this.chartData);
     });
-    console.log(event);
   }
 
 }

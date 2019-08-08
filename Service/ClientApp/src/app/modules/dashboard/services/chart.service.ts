@@ -8,23 +8,51 @@ import { map, catchError, tap, retry } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ChartService {
-  apiUrl: string = 'http://localhost:60967/api/data-chart';
+  apiUrl: string = 'http://localhost:5000/api/data-chart';
 
   constructor(private httpClient: HttpClient) { }
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    }),
-    params: new  HttpParams().set('ndata', "6").set('amount', "2")
-  };
+  getLineChartData():Observable<ChartModel[]>{
 
-  getChartData():Observable<ChartModel[]>{
-    return this.httpClient.get<ChartModel[]>(this.apiUrl, this.httpOptions)
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      params: new  HttpParams().set('ndata', "6").set('amount', "3")
+    };
+
+    return this.httpClient.get<ChartModel[]>(this.apiUrl, httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )};
+
+    getBarChartData():Observable<ChartModel[]>{
+      let httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        }),
+        params: new  HttpParams().set('ndata', "6").set('amount', "2")
+      };
+      return this.httpClient.get<ChartModel[]>(this.apiUrl, httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )};
+
+      getPieChartData(): Observable<ChartModel[]>{
+        let httpOptions = {
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json'
+          }),
+          params: new  HttpParams().set('ndata', "1").set('amount', "5")
+        }; 
+
+        return this.httpClient.get<ChartModel[]>(this.apiUrl, httpOptions)
+        .pipe(
+          retry(1),
+          catchError(this.handleError))
+        };
 
    // Error handling 
    handleError(error) {

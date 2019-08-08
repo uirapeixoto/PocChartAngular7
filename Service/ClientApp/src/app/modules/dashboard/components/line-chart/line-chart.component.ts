@@ -8,9 +8,9 @@ import { ChartService } from '../../services/chart.service';
   styleUrls: ['./line-chart.component.css']
 })
 export class LineChartComponent implements OnInit {
-  chart: Chart;
+  linechart: Chart;
 
-  public chartOptions = {
+  public linechartOptions = {
     responsive: true
   };
 
@@ -19,27 +19,27 @@ export class LineChartComponent implements OnInit {
   constructor(private service: ChartService) { }
 
   ngOnInit() {
-    this.service.getChartData().subscribe( res => {
-      this.chart = new Chart('canvas', {
+    this.service.getLineChartData().subscribe( res => {
+      this.linechart = new Chart('linecanvas', {
         type: 'line',
         data: {
           labels: this.lineChartLabels,
           datasets:res
         },
-        options: this.chartOptions
+        options: this.linechartOptions
       });
     });
   }
 
   onChartClick(event) {
-    this.service.getChartData().subscribe( res => {
-      this.chart = new Chart('canvas', {
+    this.service.getLineChartData().subscribe( res => {
+      this.linechart = new Chart('linecanvas', {
         type: 'line',
         data: {
           labels: this.lineChartLabels,
           datasets:res
         },
-        options: this.chartOptions
+        options: this.linechartOptions
       });
     });
   }

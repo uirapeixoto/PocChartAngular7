@@ -11,6 +11,7 @@ import { ChartComponent } from './components/chart/chart.component';
 import { ChartService } from './services/chart.service';
 import { FormsModule } from '@angular/forms';
 import { LineChartComponent } from './components/line-chart/line-chart.component';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { LineChartComponent } from './components/line-chart/line-chart.component
     BarchartComponent,
     BoardComponent,
     ChartComponent,
-    LineChartComponent
+    LineChartComponent,
+    PieChartComponent
   ],
   exports:[
     ChartsModule

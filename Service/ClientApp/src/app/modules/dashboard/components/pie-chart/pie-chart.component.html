@@ -1,10 +1,13 @@
-<div class="chart">
-  <canvas id="piecanvas"
-  baseChart 
-  [data]="pieChartData" 
-  [labels]="pieChartLabels" 
-  [chartType]="pieChartType"
-  [options]="pieChartOptions" 
-  [colors]="pieChartColors" 
-  [legend]="pieChartLegend"></canvas>
+<div style="width: 100%;">
+  <div class="chart">
+    <canvas id="piecanvas"
+    baseChart 
+    [data]="pieChartData" 
+    [labels]="pieChartLabels" 
+    [chartType]="pieChartType"
+    [options]="pieChartOptions" 
+    [colors]="pieChartColors" 
+    [legend]="pieChartLegend">{{ piechart }}</canvas>
+  </div>
+  <button btn btn-primary btn-sm (click)="onPieChartClick($event)">refresh</button>
 </div>

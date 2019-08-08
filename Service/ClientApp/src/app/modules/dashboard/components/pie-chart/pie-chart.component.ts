@@ -24,13 +24,17 @@ export class PieChartComponent implements OnInit {
     }
   };
 
-  public pieChartColor:any = [
-    'rgba(30, 169, 224, 0.8)',
-    'rgba(255,165,0,0.9)',
-    'rgba(139, 136, 136, 0.9)',
-    'rgba(255, 161, 181, 0.9)',
-    'rgba(255, 102, 0, 0.9)'
-  ];
+  // CHART COLOR.
+  pieChartColor:any = [
+    {
+        backgroundColor: ['rgba(30, 169, 224, 0.8)',
+        'rgba(255,165,0,0.9)',
+        'rgba(139, 136, 136, 0.9)',
+        'rgba(255, 161, 181, 0.9)',
+        'rgba(255, 102, 0, 0.9)'
+        ]
+    }
+]
 
   constructor(private service: ChartService) { }
 
@@ -43,8 +47,8 @@ export class PieChartComponent implements OnInit {
         values.push(x.data[0]);
       });
       this.pieChartData = values;
-      console.log(this.pieChartLabels);
-      console.log(this.pieChartData);
+      //console.log(this.pieChartLabels);
+      //console.log(this.pieChartData);
       this.pieChartData = [
         {
           labels: this.pieChartLabels,
@@ -69,4 +73,31 @@ export class PieChartComponent implements OnInit {
     });
   }
 
+  onPieChartClick(event) {
+    this.RefreshChart();
+    this.piechart.update();
+  }
+
+  RefreshChart(){
+      let values: number[] = [];
+      let labels: string[] = [];
+      this.service.getPieChartData().subscribe( res => {
+        res.forEach(x => {
+          labels.push(x.label);
+          values.push(x.data[0]);
+        });
+        this.pieChartLabels = labels;
+        this.pieChartData = values;
+        //console.log(this.pieChartLabels);
+        //console.log(this.pieChartData);
+        this.pieChartData = [
+          {
+            labels: this.pieChartLabels,
+            data: values
+          }];
+      },
+      (err: HttpErrorResponse) => {
+        console.log (err.message);
+      });
+    }
 }

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Repository.Config;
-using Repository.Helper;
 using Repository.Repository;
+using Service.Helper;
 
 namespace Service.Controllers
 {

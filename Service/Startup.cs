@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Repository.Config;
+using Repository.IoC;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Collections.Generic;
 using System.IO;
@@ -25,6 +26,10 @@ namespace Service
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //SignalR
+            services.AddSignalR();
+
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             #region Configuração do Swagger
@@ -66,15 +71,16 @@ namespace Service
                 options.Filters.Add(new Microsoft.AspNetCore.Mvc.Cors.Internal.CorsAuthorizationFilterFactory("AllowAll"));
             });
             #endregion
-            
-            //SignalR
-            services.AddSignalR();
+
+
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            StartupIoC.RegisterServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

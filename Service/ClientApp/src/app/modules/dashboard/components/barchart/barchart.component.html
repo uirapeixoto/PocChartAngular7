@@ -1,0 +1,19 @@
+<p>
+  barchart works!
+</p>
+<div>
+  <span>Chart!</span>
+</div>
+<div *ngFor="let chart of dataChart" class="table">
+  <div class="row">
+      <div class="col-md" style="width: 98px">
+          <strong><small>{{chart.label}}</small></strong>
+      </div>
+      <div *ngFor="let item of chart.data" class="col border border-light" style="width: 98px">
+          <div>{{item}}</div>
+      </div>
+  </div>
+  {{dataChart[0].label}}
+</div>
+
+

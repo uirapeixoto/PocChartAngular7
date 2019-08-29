@@ -24,17 +24,24 @@ export class PieChartComponent implements OnInit {
     }
   };
 
-  // CHART COLOR.
-  pieChartColor:any = [
-    {
-        backgroundColor: ['rgba(30, 169, 224, 0.8)',
-        'rgba(255,165,0,0.9)',
-        'rgba(139, 136, 136, 0.9)',
-        'rgba(255, 161, 181, 0.9)',
-        'rgba(255, 102, 0, 0.9)'
-        ]
-    }
-]
+  public pieChartColor: any[] = [
+    { 
+      backgroundColor: [
+        'rgba(94, 181, 239, 0.79)',
+        'rgba(33, 196, 60, 0.79)',
+        'rgba(239, 236, 93, 0.79)',
+        'rgba(221, 60, 60, 0.79)',
+        'rgba(255, 128, 155, 0.79)',
+        'rgba(132, 93, 239, 0.71)',
+        'rgba(239, 93, 93, 0.71)',
+        'rgba(239, 146, 93, 0.71)'
+      ],
+      borderColor: 'white',
+      pointBackgroundColor: 'rgba(225,10,24,0.2)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(225,10,24,0.2)'
+    }];
 
   constructor(private service: ChartService) { }
 
@@ -47,8 +54,6 @@ export class PieChartComponent implements OnInit {
         values.push(x.data[0]);
       });
       this.pieChartData = values;
-      //console.log(this.pieChartLabels);
-      //console.log(this.pieChartData);
       this.pieChartData = [
         {
           labels: this.pieChartLabels,
@@ -75,9 +80,8 @@ export class PieChartComponent implements OnInit {
 
   onPieChartClick(event) {
     this.RefreshChart();
-    this.piechart.update();
   }
-
+  
   RefreshChart(){
       let values: number[] = [];
       let labels: string[] = [];
@@ -88,8 +92,6 @@ export class PieChartComponent implements OnInit {
         });
         this.pieChartLabels = labels;
         this.pieChartData = values;
-        //console.log(this.pieChartLabels);
-        //console.log(this.pieChartData);
         this.pieChartData = [
           {
             labels: this.pieChartLabels,

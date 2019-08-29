@@ -3,9 +3,13 @@
     <div style="display: block;">
       <canvas id='linecanvas'
       baseChart
-      [chartType]="'line'"
-      [options]="chartOptions"
-      [legend]="true">{{ linechart }}</canvas>
+      [datasets]="lineChartData"
+      [labels]="lineChartLabels"
+      [options]="lineChartOptions"
+      [colors]="barChartColors"
+      [legend]="lineChartLegend"
+      [chartType]="lineChartType"
+      ></canvas>
     </div>
   </div>
   <button mat-button mat-raised-button color="primary" (click)="onChartClick($event)">refresh</button>

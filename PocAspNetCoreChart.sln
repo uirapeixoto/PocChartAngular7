@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{FA463583-5F12-4672-ACDF-2C272693FE6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.csproj", "{FA463583-5F12-4672-ACDF-2C272693FE6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{1E1B28F4-AD1D-4EA0-BE3B-1873E43D9382}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{1E1B28F4-AD1D-4EA0-BE3B-1873E43D9382}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryTest", "RepositoryTest\RepositoryTest.csproj", "{16E92F67-1A7F-489A-86F2-100A34D6D7CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{1E1B28F4-AD1D-4EA0-BE3B-1873E43D9382}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E1B28F4-AD1D-4EA0-BE3B-1873E43D9382}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E1B28F4-AD1D-4EA0-BE3B-1873E43D9382}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16E92F67-1A7F-489A-86F2-100A34D6D7CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16E92F67-1A7F-489A-86F2-100A34D6D7CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16E92F67-1A7F-489A-86F2-100A34D6D7CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16E92F67-1A7F-489A-86F2-100A34D6D7CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

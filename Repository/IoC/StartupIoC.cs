@@ -15,6 +15,7 @@ namespace Repository.IoC
 
             #region Repository
             services.AddScoped<IDataChartRepository, DataChartRepository>();
+            services.AddScoped<IChartRepository, ChartRepository>();
             #endregion
         }
     }

@@ -22,11 +22,12 @@ namespace RepositoryTest
         /// <summary>
         /// Our Mock Products Repository for use in testing
         /// </summary>
-        public readonly IDataChartRepository MockProductsRepository;
+        public readonly DataChartRepository _mockChartRepository;
 
         public ReposirotyChartTest()
         {
-
+            ChartContext = new DataContext();
+            _mockChartRepository = new DataChartRepository();
         }
 
         public IQueryable<ChartModel> GetDataMock()
@@ -92,20 +93,13 @@ namespace RepositoryTest
         }
 
         [Fact]
-        public void TestGetVariousData()
+        public void TestGetVariousDataType()
         {
             //Arrange
-            var chartModel = new ChartModel();
-            var context = new Mock<DataContext>();
-            var dbSetMock = new Mock<DbSet<ChartModel>>();
-
-            context.Setup(x => x.Set<ChartModel>()).Returns(dbSetMock.Object);
+            var result = _mockChartRepository.GetVariousData(2, 2);
 
             //Act
-            var repository = new RepositoryBase<ChartModel>(context.Object);
-            var result = repository.GetAll();
-
-            var expected = typeof(IQueryable<ChartModel>);
+            var expected = typeof(List<ChartModel>);
 
             //Assert
 
@@ -115,6 +109,14 @@ namespace RepositoryTest
 
         [Fact]
         public void TestGetVariousDataException()
+        {
+            //Assert
+            Assert.Throws<Exception>(() => _mockChartRepository.GetVariousData(0, 0));
+
+        }
+
+        [Fact]
+        public void TestGetGetAllException()
         {
             //Arrange
             var chartModel = new ChartModel();
@@ -127,7 +129,7 @@ namespace RepositoryTest
             var repository = new RepositoryBase<ChartModel>(context.Object);
 
             //Assert
-            Assert.Throws<Exception>(() => repository.GetAll());
+            Assert.Throws<ArgumentException>(() => repository.Get(0));
 
         }
 

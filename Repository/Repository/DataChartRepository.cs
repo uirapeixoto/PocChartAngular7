@@ -18,7 +18,17 @@ namespace Repository.Repository
 
         public List<ChartModel> GetVariousData(int data, int amount)
         {
-            return DataManager.GetVariousData(data, amount);
+            try
+            {
+                if (data == 0 || amount == 0)
+                    throw new System.Exception("Dados inválidos.");
+
+                return DataManager.GetVariousData(data, amount);
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
         }
     }
 }

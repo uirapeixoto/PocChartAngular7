@@ -19,7 +19,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
+    <PackageReference Include="ReportGenerator" Version="4.2.19" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
+    <DotNetCliToolReference Include="dotnet-reportgenerator-cli" Version="4.2.19" />
   </ItemGroup>
 
   <ItemGroup>

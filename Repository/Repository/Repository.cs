@@ -34,7 +34,7 @@ namespace Repository.Repository
             catch (Exception e)
             {
 
-                throw;
+                throw new Exception(e.Message);
             }
         }
 

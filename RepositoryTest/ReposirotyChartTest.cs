@@ -28,20 +28,24 @@ namespace RepositoryTest
         {
 
         }
-        
 
-        [Fact]
-        public void Test1()
+        public IQueryable<ChartModel> GetDataMock()
         {
-
-            // create some mock products to play with
-            var data = new List<ChartModel>
+            return new List<ChartModel>
                 {
                     new ChartModel { Data = new List<int>{ 10, 20, 30, 40, 40, 30, 20, 10 },Label  = "Label 1"  },
                     new ChartModel { Data = new List<int>{ 20, 30, 40, 30, 30, 40, 30, 20 },Label  = "Label 2"  },
                     new ChartModel { Data = new List<int>{ 30, 40, 30, 20, 20, 30, 40, 30 },Label  = "Label 3"  },
                     new ChartModel { Data = new List<int>{ 40, 30, 20, 10, 10, 20, 30, 40 },Label  = "Label 4"  },
                 }.AsQueryable();
+        }
+
+        [Fact]
+        public void Test1()
+        {
+
+            // create some mock products to play with
+            var data = GetDataMock();
 
             var mockSet = new Mock<DbSet<ChartModel>>();
             mockSet.As<IQueryable<ChartModel>>().Setup(m => m.Provider).Returns(data.Provider);
@@ -64,19 +68,85 @@ namespace RepositoryTest
             // return a dataChart
             mockChartRepository.Setup(mr => mr.GetData(It.IsAny<int>())).Returns((string l) => dataChart.Where(x => x.Label.Equals(l)).ToList());
 
-            // Complete the setup of our Mock Product Repository
-            this.MockChartRepository = mockProductRepository.Object;
+        }
+
+        [Fact]
+        public void TestGet()
+        {
+            //Arrange
+            var chartModel = new ChartModel();
+            var context = new Mock<DataContext>();
+            var dbSetMock = new Mock<DbSet<ChartModel>>();
+
+            context.Setup(x => x.Set<ChartModel>()).Returns(dbSetMock.Object);
+            dbSetMock.Setup(x => x.Find(It.IsAny<int>())).Returns(chartModel);
+
+            //Act
+            var repository = new RepositoryBase<ChartModel>(context.Object);
+            repository.Get(1);
+
+            //Assert
+            context.Verify(x => x.Set<ChartModel>());
+            dbSetMock.Verify(x => x.Find(It.IsAny<int>()));
 
         }
 
         [Fact]
-        public void Test2()
+        public void TestGetVariousData()
         {
+            //Arrange
+            var chartModel = new ChartModel();
+            var context = new Mock<DataContext>();
+            var dbSetMock = new Mock<DbSet<ChartModel>>();
 
-            var mock = new Mock<IDataChartRepository>();
-            var r = mock.Setup(p => p.GetData());
-            Assert.IsType<List<ChartModel>>(r.GetType());
+            context.Setup(x => x.Set<ChartModel>()).Returns(dbSetMock.Object);
 
+            //Act
+            var repository = new RepositoryBase<ChartModel>(context.Object);
+            var result = repository.GetAll();
+
+            var expected = typeof(IQueryable<ChartModel>);
+
+            //Assert
+
+            Assert.IsType(expected, result);
+
+        }
+
+        [Fact]
+        public void TestGetVariousDataException()
+        {
+            //Arrange
+            var chartModel = new ChartModel();
+            var context = new Mock<DataContext>();
+            var dbSetMock = new Mock<DbSet<ChartModel>>();
+
+            context.Setup(x => x.Set<ChartModel>()).Returns(dbSetMock.Object);
+            
+            //Act
+            var repository = new RepositoryBase<ChartModel>(context.Object);
+
+            //Assert
+            Assert.Throws<Exception>(() => repository.GetAll());
+
+        }
+
+        [Fact]
+        public void TryGetValue_NullKeyIsPassed_ArgumentNullExceptionIsThrown()
+        {
+            //Arrange
+            var chartModel = new ChartModel();
+            var context = new Mock<DataContext>();
+            var dbSetMock = new Mock<DbSet<ChartModel>>();
+
+            context.Setup(x => x.Set<ChartModel>()).Returns(dbSetMock.Object);
+            dbSetMock.Setup(x => x.Find(It.IsAny<int>())).Returns(chartModel);
+
+            //Act
+            var repository = new RepositoryBase<ChartModel>(context.Object);
+
+            // Act & Assert
+            Assert.Throws<ArgumentException>(() => repository.Get(0));
         }
     }
 }

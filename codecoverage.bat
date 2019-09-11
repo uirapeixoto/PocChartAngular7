@@ -25,13 +25,13 @@ exit /b %errorlevel%
 -target:"%~dp0packages\xunit.runner.console.2.4.1\tools\net452\xunit.console.x86.exe"  ^
 -targetargs:"%~dp0FM.Metricas.UnitTest\bin\Debug\FM.Metricas.UnitTest.dll -noshadow" ^
 -filter:"+[FM.Metricas*]* -[FM.Metricas.UnitTest]* " ^
--output:"%~dp0\GeneratedReports\FM.Metricas.xml"
+-output:"%~dp0\GeneratedReports\result.xml"
 exit /b %errorlevel%
 
 
 :RunReportGeneratorOutput
 "%~dp0packages\ReportGenerator.4.2.19\tools\ReportGenerator.exe" ^
--reports:"%~dp0\GeneratedReports\FM.Metricas.xml" ^
+-reports:"%~dp0\GeneratedReports\result.xml" ^
 -targetdir:"%~dp0\GeneratedReports\ReportGeneratorOutput" ^
 -reporttypes:Xml;Html
 exit /b %errorlevel%

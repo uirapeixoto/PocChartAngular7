@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace RepositoryTest
+namespace Repository.Tests
 {
     public class ReposirotyChartTest
     {
@@ -61,7 +61,7 @@ namespace RepositoryTest
             var dataChart = repository.GetData(1);
 
             // Mock the dataChart Repository using Moq
-            Mock<IDataChartRepository> mockChartRepository = new Mock<IDataChartRepository>();
+            Mock<IChartRepository> mockChartRepository = new Mock<IChartRepository>();
 
             // Return various dataCharts
             mockChartRepository.Setup(mr => mr.GetVariousData(It.IsAny<int>(), It.IsAny<int>()));

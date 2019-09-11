@@ -6,9 +6,9 @@ namespace Repository.Service
 {
     public class DataChartService : IDataChartService
     {
-        private readonly IDataChartRepository _repository;
+        private readonly IChartRepository _repository;
 
-        public DataChartService(IDataChartRepository repository)
+        public DataChartService(IChartRepository repository)
         {
             _repository = repository;
         }

@@ -70,6 +70,24 @@ namespace Repository.Tests
                 }
             );
 
+            mockDataChartRepository.Setup(x => x.Update(It.IsAny<int>(), It.IsAny<ChartDataModel>())).Returns(
+                (int id, ChartDataModel target) =>
+                {
+                    var original = data.Where(x => x.Id.Equals(id)).Single();
+
+                    if (original == null)
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        original.Label = target.Label;
+                        original.Data = target.Data;
+                    }
+                    return target;
+                }
+            );
+
 
             _mockChartRepository = mockDataChartRepository.Object;
 
@@ -148,9 +166,9 @@ namespace Repository.Tests
                 Id = data.Max(x => x.Id) + 1,
                 Label = $"Label {data.Max(x => x.Id) + 1}",
                 Data = new List<Data>{
-                    new Data { Id = 1, Mes = 1, Ano = 2019, LabelId = data.Max(x => x.Id) + 1,  Valor = 120.0m },
-                    new Data { Id = 2, Mes = 2, Ano = 2019, LabelId = data.Max(x => x.Id) + 1,  Valor = 130.0m },
-                    new Data { Id = 3, Mes = 3, Ano = 2019, LabelId = data.Max(x => x.Id) + 1,  Valor = 140.0m }
+                    new Data { Id = 1, Mes = 1, Ano = 2019, LabelId = data.Max(x => x.Id) + 1,  Valor = 130.0m },
+                    new Data { Id = 2, Mes = 2, Ano = 2019, LabelId = data.Max(x => x.Id) + 1,  Valor = 140.0m },
+                    new Data { Id = 3, Mes = 3, Ano = 2019, LabelId = data.Max(x => x.Id) + 1,  Valor = 150.0m }
                 }
             };
 
@@ -160,6 +178,30 @@ namespace Repository.Tests
             Assert.NotNull(testChart); // Test if null
             Assert.IsType<ChartDataModel>(testChart); // Test type
             Assert.Equal(4,testChart.Id); // Test type
+        }
+
+        [Fact]
+        public void TestUpdate()
+        {
+            var data = GetDataMock();
+
+            //permite que o teste insira um novo dataChart
+            var newDataChart = new ChartDataModel
+            {
+                Label = $"Label 5",
+                Data = new List<Data>{
+                    new Data { Id = 1, Mes = 1, Ano = 2019, LabelId = data.Min(x => x.Id) + 1,  Valor = 120.0m },
+                    new Data { Id = 2, Mes = 2, Ano = 2019, LabelId = data.Min(x => x.Id) + 1,  Valor = 130.0m },
+                    new Data { Id = 3, Mes = 3, Ano = 2019, LabelId = data.Min(x => x.Id) + 1,  Valor = 140.0m }
+                }
+            };
+
+            //Arrange
+            ChartDataModel testChart = _mockChartRepository.Update(1, newDataChart);
+
+            Assert.NotNull(testChart); // Test if null
+            Assert.IsType<ChartDataModel>(testChart); // Test type
+            Assert.Equal("Label 5", testChart.Label); // Test type
         }
 
         [Fact]

@@ -113,21 +113,13 @@ namespace Repository.Tests
         }
 
         [Fact]
-        public void TestGetGetAllException()
+        public void TestGetGetAll()
         {
             //Arrange
-            var chartModel = new ChartDataModel();
-            var context = new Mock<DataContext>();
-            var dbSetMock = new Mock<DbSet<ChartDataModel>>();
+            IEnumerable<ChartDataModel> testChart = _mockChartRepository.GetAll();
 
-            context.Setup(x => x.Set<ChartDataModel>()).Returns(dbSetMock.Object);
-            
-            //Act
-            var repository = new RepositoryBase<ChartDataModel>(context.Object);
-
-            //Assert
-            Assert.Throws<ArgumentException>(() => repository.Get(0));
-
+            Assert.NotNull(testChart); // Test if null
+            Assert.IsType<List<ChartDataModel>>(testChart); // Test type
         }
 
         [Fact]

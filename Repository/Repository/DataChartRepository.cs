@@ -13,10 +13,9 @@ namespace Repository.Repository
         private readonly DataContext _context;
         private DbSet<ChartDataModel> _entity;
 
-        public DataChartRepository(DataContext context, DbSet<ChartDataModel> entity)
+        public DataChartRepository(DataContext context )
         {
             _context = context;
-            _entity = entity;
         }
 
         public ChartDataModel Add(ChartDataModel data)

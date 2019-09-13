@@ -7,8 +7,8 @@ namespace Repository.Contract
 {
     public interface IChartService
     {
-        IEnumerable<ChartModel> GetData(int i);
-        IEnumerable<ChartModel> GenerateData(int data, int amount);
-        IEnumerable<ChartModel> GetVariousData(int amount);
+        IEnumerable<ChartModel> Get(int i);
+        IEnumerable<ChartModel> GetVarious(int data, int amount);
+        ChartModel GetOne(int value);
     }
 }

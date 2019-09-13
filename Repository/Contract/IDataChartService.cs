@@ -5,8 +5,10 @@ namespace Repository.Contract
 {
     public interface IDataChartService
     {
-        List<ChartModel> GetOne();
-        List<ChartModel> GetOne(int value);
-        List<ChartModel> GetVarious(int data, int amount);
+        ChartDataModel GetById(int id);
+        IEnumerable<ChartDataModel> GetAll();
+        ChartDataModel Add(ChartDataModel data);
+        ChartDataModel Update(int id, ChartDataModel data);
+        bool Remove(int id, ChartDataModel data);
     }
 }

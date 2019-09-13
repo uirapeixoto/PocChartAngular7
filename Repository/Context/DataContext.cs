@@ -19,7 +19,7 @@ namespace Repository.Context
         {
         }
 
-        public DbSet<ChartModel> ChartModel { get; set; }
+        public DbSet<ChartDataModel> ChartDataModel { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

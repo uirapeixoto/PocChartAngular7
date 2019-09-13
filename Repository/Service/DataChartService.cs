@@ -6,26 +6,36 @@ namespace Repository.Service
 {
     public class DataChartService : IDataChartService
     {
-        private readonly IChartRepository _repository;
+        private readonly IDataChartRepository _repository;
 
-        public DataChartService(IChartRepository repository)
+        public DataChartService(IDataChartRepository repository)
         {
             _repository = repository;
         }
 
-        public List<ChartModel> GetOne()
+        public ChartDataModel Add(ChartDataModel data)
         {
-            return _repository.GetData();
+            throw new System.NotImplementedException();
         }
 
-        public List<ChartModel> GetOne(int value)
+        public IEnumerable<ChartDataModel> GetAll()
         {
-            return _repository.GetData(value);
+            throw new System.NotImplementedException();
         }
 
-        public List<ChartModel> GetVarious(int data, int amount)
+        public ChartDataModel GetById(int id)
         {
-            return _repository.GetVariousData(data, amount);
+            throw new System.NotImplementedException();
+        }
+
+        public bool Remove(int id, ChartDataModel data)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public ChartDataModel Update(int id, ChartDataModel data)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

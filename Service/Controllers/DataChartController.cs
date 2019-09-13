@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Repository.Contract;
 using Repository.Domain;
+using System;
 using System.Collections.Generic;
 using System.Net;
 
@@ -11,9 +12,9 @@ namespace Service.Controllers
     [Route("api/data-chart")]
     public class DataChartController : ControllerBase
     {
-        private readonly IDataChartService _service;
+        private readonly IChartService _service;
 
-        public DataChartController(IDataChartService service)
+        public DataChartController(IChartService service)
         {
             _service = service;
         }
@@ -32,12 +33,12 @@ namespace Service.Controllers
         public IActionResult Get(int ndata, int amount)
         {
             if (ndata > 0 && amount == 0)
-                return Ok(_service.GetOne(ndata));
-            else 
+                return Ok(_service.Get(ndata));
+            else
             if (ndata > 0 && amount > 0)
                 return Ok(_service.GetVarious(ndata, amount));
             else
-                return Ok(_service.GetOne());
+                return Ok(_service.GetOne(ndata));
         }
     }
 }

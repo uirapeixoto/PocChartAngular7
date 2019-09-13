@@ -15,19 +15,20 @@ namespace Repository.Service
             _repository = repository;
         }
 
-        public IEnumerable<ChartModel> GenerateData(int data, int amount)
+
+        public IEnumerable<ChartModel> Get(int i)
         {
-            return _repository.GenerateData(data, amount);
+            return _repository.Get(i);
         }
 
-        public IEnumerable<ChartModel> GetData(int i)
+        public ChartModel GetOne(int value)
         {
-            return _repository.GetData(i);
+            return _repository.GetOne(value);
         }
 
-        public IEnumerable<ChartModel> GetVariousData(int amount)
+        public IEnumerable<ChartModel> GetVarious(int data, int amount)
         {
-            return _repository.GetVariousData(amount);
+            return _repository.GetVarious(data, amount);
         }
     }
 }

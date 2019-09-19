@@ -1,11 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Repository.Context;
 using Repository.Contract;
+using Repository.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace Repository.Repository
 {

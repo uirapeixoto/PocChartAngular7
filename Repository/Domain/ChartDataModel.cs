@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Repository.Domain
 {
     public class ChartDataModel
     {
         public int Id { get; set; }
-        public List<Data> Data { get; set; }
         public string Label { get; set; }
+        public int? IdData { get; set; }
 
-        public ChartDataModel()
-        {
-            Data = new List<Data>();
-        }
+        public IEnumerable<DataModel> Data { get; set; }
     }
 }

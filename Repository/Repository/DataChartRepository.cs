@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Repository.Context;
 using Repository.Contract;
 using Repository.Domain;
+using Repository.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,6 @@ namespace Repository.Repository
     public class DataChartRepository : IDataChartRepository
     {
         private readonly DataContext _context;
-        private DbSet<ChartDataModel> _entity;
 
         public DataChartRepository(DataContext context )
         {
@@ -22,6 +21,13 @@ namespace Repository.Repository
         {
             try
             {
+                DataChart chart = new DataChart
+                {
+                    Id = data.Id,
+                    Label = data.Label,
+                    
+                };
+
                 _context.Add(data);
                 _context.SaveChanges();
                 return data;
@@ -36,7 +42,10 @@ namespace Repository.Repository
         {
             try
             {
-                return _entity.AsQueryable();
+                return _context.DataChart.Select(x => new ChartDataModel {
+                    Id= x.Id,
+                    Label = x.Label,
+                });
             }
             catch (Exception e)
             {
@@ -52,7 +61,10 @@ namespace Repository.Repository
                 if (id == 0)
                     throw new ArgumentException("query error");
 
-                return _entity.FirstOrDefault(x => x.Id.Equals(id));
+                return _context.DataChart.Where(x => x.Id.Equals(id)).Select(x => new ChartDataModel {
+                    Id = x.Id,
+                    Label = x.Label
+                }).FirstOrDefault();
             }
             catch (Exception e)
             {
@@ -68,9 +80,9 @@ namespace Repository.Repository
                 if (id == 0)
                     throw new ArgumentNullException("Remove error");
 
-                var i = _entity.FirstOrDefault(x => x.Id.Equals(id));
-                 _entity.Remove(i);
-                 _context.SaveChanges();
+                var i = _context.DataChart.FirstOrDefault(x => x.Id.Equals(id));
+                _context.Remove(i);
+                _context.SaveChanges();
                 return true;
             }
             catch (Exception e)
@@ -84,18 +96,17 @@ namespace Repository.Repository
         {
             try
             {
-                if (_entity == null || id == 0)
+                if (data == null || id == 0)
                     throw new ArgumentNullException("Update error");
 
-                var update = GetById(id);
+                var update = _context.DataChart.FirstOrDefault(x => x.Id == id);
                 if (!data.Equals(update))
                 {
-                    update.Data = data.Data;
                     update.Label = data.Label;
                     _context.SaveChanges();
                 }
 
-                return update;
+                return data;
 
             }
             catch (Exception e)

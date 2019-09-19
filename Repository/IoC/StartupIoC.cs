@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Repository.Context;
 using Repository.Contract;
+using Repository.Entity;
 using Repository.Repository;
 using Repository.Service;
 

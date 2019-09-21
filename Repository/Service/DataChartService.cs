@@ -15,18 +15,13 @@ namespace Repository.Service
 
         public ChartDataModel Add(ChartDataModel data)
         {
-            throw new System.NotImplementedException();
+            _repository.Add(data);
+            return data;
         }
 
-        public IEnumerable<ChartDataModel> GetAll()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IEnumerable<ChartDataModel> GetAll() => _repository.GetAll();
+        public ChartDataModel GetById(int id) => _repository.GetById(id);
 
-        public ChartDataModel GetById(int id)
-        {
-            throw new System.NotImplementedException();
-        }
 
         public bool Remove(int id, ChartDataModel data)
         {

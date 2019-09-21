@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Repository.Repository
 {
-    public class DataManager
+    public static class DataManager
     {
         public static List<ChartModel> GetData()
         {

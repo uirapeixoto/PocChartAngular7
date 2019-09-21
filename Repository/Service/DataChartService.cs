@@ -13,19 +13,24 @@ namespace Repository.Service
             _repository = repository;
         }
 
-        public List<ChartModel> GetOne()
+        public ChartDataModel Add(ChartDataModel data)
         {
-            return _repository.GetData();
+            _repository.Add(data);
+            return data;
         }
 
-        public List<ChartModel> GetOne(int value)
+        public IEnumerable<ChartDataModel> GetAll() => _repository.GetAll();
+        public ChartDataModel GetById(int id) => _repository.GetById(id);
+
+
+        public bool Remove(int id, ChartDataModel data)
         {
-            return _repository.GetData(value);
+            throw new System.NotImplementedException();
         }
 
-        public List<ChartModel> GetVarious(int data, int amount)
+        public ChartDataModel Update(int id, ChartDataModel data)
         {
-            return _repository.GetVariousData(data, amount);
+            throw new System.NotImplementedException();
         }
     }
 }
